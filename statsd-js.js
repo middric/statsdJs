@@ -7,8 +7,8 @@ define(function () {
             }
             url += '/transparent.gif';
         },
-        send = function (bucket, type, value) {
-            var metricUrl = url + '?b=' + bucket + '&t=' + type + '&v=' + value;
+        send = function (bucket, type, delta) {
+            var metricUrl = url + '?b=' + bucket + '&t=' + type + '&d=' + delta;
 
             statsdImage.src = metricUrl;
         },
@@ -24,15 +24,22 @@ define(function () {
         setUrl(config.host, config.port);
 
         return {
-            config: config,
             counter: function(bucket, value) {
-                send(bucket, 'c', value);
+                send(bucket, 'counter', value);
+            },
+            decrement: function(bucket, value) {
+                var delta = value || 1;
+                send(bucket, 'decrement', delta);
+            },
+            increment: function(bucket, value) {
+                var delta = value || 1;
+                send(bucket, 'increment', delta);
             },
             gauge: function(bucket, value) {
-                send(bucket, 'g', value);
+                send(bucket, 'gauge', value);
             },
             timer: function(bucket, value) {
-                send(bucket, 't', value);
+                send(bucket, 'timer', value);
             }
         };
     };
