@@ -1,4 +1,4 @@
-```javascript```
+```javascript
 require(['statsd-js'], function (statsd) {
     // Send counter
     statsd.counter('bucket-name', 1);
