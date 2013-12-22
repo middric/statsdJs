@@ -1,0 +1,10 @@
+{
+  "name": "statsd-js",
+  "version": "0.0.1",
+  "description": "Module for communicating with statsd-proxy from the browser",
+  "readmeFilename": "README.md",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/middric/statsdJs.git"
+  }
+}
