@@ -24,22 +24,22 @@ define(function () {
         setUrl(config.host, config.port);
 
         return {
-            counter: function(bucket, value) {
-                send(bucket, 'counter', value);
+            counter: function(bucket, delta) {
+                send(bucket, 'counter', delta);
             },
-            decrement: function(bucket, value) {
-                var delta = value || 1;
+            decrement: function(bucket, amount) {
+                var delta = amount || 1;
                 send(bucket, 'decrement', delta);
             },
-            increment: function(bucket, value) {
-                var delta = value || 1;
+            increment: function(bucket, amount) {
+                var delta = amount || 1;
                 send(bucket, 'increment', delta);
             },
-            gauge: function(bucket, value) {
-                send(bucket, 'gauge', value);
+            gauge: function(bucket, delta) {
+                send(bucket, 'gauge', delta);
             },
-            timer: function(bucket, value) {
-                send(bucket, 'timer', value);
+            timer: function(bucket, delta) {
+                send(bucket, 'timer', delta);
             }
         };
     };
