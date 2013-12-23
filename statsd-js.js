@@ -1,3 +1,9 @@
+/*
+ * statsd-js.js
+ * version 1.2.1
+ * (c) 2013 Rich Middleditch [richmiddleditch@gmail.com]
+ * released under the MIT license
+ */
 define(function () {
     var statsdImage = new Image(),
         getPrefix = function () {
