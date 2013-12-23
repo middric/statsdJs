@@ -1,8 +1,8 @@
 define(function () {
     var statsdImage = new Image(),
-        getNamespace = function () {
-            if (namespace) {
-                return namespace + '.';
+        getPrefix = function () {
+            if (prefix) {
+                return prefix + '.';
             }
             return '';
         },
@@ -14,11 +14,11 @@ define(function () {
             url += '/transparent.gif';
         },
         send = function (bucket, type, delta) {
-            var metricUrl = url + '?b=' + getNamespace() + bucket + '&t=' + type + '&d=' + delta;
+            var metricUrl = url + '?b=' + getPrefix() + bucket + '&t=' + type + '&d=' + delta;
 
             statsdImage.src = metricUrl;
         },
-        namespace,
+        prefix,
         url;
 
     return function(config) {
@@ -30,8 +30,8 @@ define(function () {
         }
         setUrl(config.host, config.port);
 
-        if (config.namespace) {
-            namespace = config.namespace;
+        if (config.prefix) {
+            prefix = config.prefix;
         }
 
         return {

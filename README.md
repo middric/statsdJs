@@ -3,7 +3,7 @@ require(['statsd-js'], function (StatsdJS) {
     var statsd = new StatsdJS({
         host: 'statsdHost',
         port: 80,
-        namespace: 'javascript'
+        prefix: 'javascript'
     })
 
     // Send counter
