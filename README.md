@@ -1,10 +1,10 @@
 ```javascript
-require(['statsd-js'], function (StatsdJS) {
-    var statsd = new StatsdJS({
+require(['statsd-js'], function (statsd) {
+    statsd.setup({
         host: 'statsdHost',
         port: 80,
         prefix: 'javascript'
-    })
+    });
 
     // Send counter
     statsd.counter('bucket-name', 1);

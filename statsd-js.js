@@ -21,37 +21,36 @@ define(function () {
         prefix,
         url;
 
-    return function(config) {
-        if (!config) {
-            throw new Error('No configuration');
-        }
-        if (!config.host) {
-            throw new Error('Configuration host missing');
-        }
-        setUrl(config.host, config.port);
-
-        if (config.prefix) {
-            prefix = config.prefix;
-        }
-
-        return {
-            counter: function(bucket, delta) {
-                send(bucket, 'counter', delta);
-            },
-            decrement: function(bucket, amount) {
-                var delta = amount || 1;
-                send(bucket, 'decrement', delta);
-            },
-            increment: function(bucket, amount) {
-                var delta = amount || 1;
-                send(bucket, 'increment', delta);
-            },
-            gauge: function(bucket, delta) {
-                send(bucket, 'gauge', delta);
-            },
-            timer: function(bucket, delta) {
-                send(bucket, 'timer', delta);
+    return {
+        counter: function(bucket, delta) {
+            send(bucket, 'counter', delta);
+        },
+        decrement: function(bucket, amount) {
+            var delta = amount || 1;
+            send(bucket, 'decrement', delta);
+        },
+        increment: function(bucket, amount) {
+            var delta = amount || 1;
+            send(bucket, 'increment', delta);
+        },
+        gauge: function(bucket, delta) {
+            send(bucket, 'gauge', delta);
+        },
+        timer: function(bucket, delta) {
+            send(bucket, 'timer', delta);
+        },
+        setup: function(config) {
+            if (!config) {
+                throw new Error('No configuration');
             }
-        };
+            if (!config.host) {
+                throw new Error('Configuration host missing');
+            }
+            setUrl(config.host, config.port);
+
+            if (config.prefix) {
+                prefix = config.prefix;
+            }
+        }
     };
 });
