@@ -1,5 +1,11 @@
 ```javascript
-require(['statsd-js'], function (statsd) {
+require(['statsd-js'], function (StatsdJS) {
+    var statsd = new StatsdJS({
+        host: 'statsdHost',
+        port: 80,
+        namespace: 'javascript'
+    })
+
     // Send counter
     statsd.counter('bucket-name', 1);
 

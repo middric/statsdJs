@@ -1,5 +1,11 @@
 define(function () {
     var statsdImage = new Image(),
+        getNamespace = function () {
+            if (namespace) {
+                return namespace + '.';
+            }
+            return '';
+        },
         setUrl = function (host, port) {
             url = 'http://' + host;
             if (port) {
@@ -8,10 +14,11 @@ define(function () {
             url += '/transparent.gif';
         },
         send = function (bucket, type, delta) {
-            var metricUrl = url + '?b=' + bucket + '&t=' + type + '&d=' + delta;
+            var metricUrl = url + '?b=' + getNamespace() + bucket + '&t=' + type + '&d=' + delta;
 
             statsdImage.src = metricUrl;
         },
+        namespace,
         url;
 
     return function(config) {
@@ -22,6 +29,10 @@ define(function () {
             throw new Error('Configuration host missing');
         }
         setUrl(config.host, config.port);
+
+        if (config.namespace) {
+            namespace = config.namespace;
+        }
 
         return {
             counter: function(bucket, delta) {
