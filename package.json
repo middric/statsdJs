@@ -1,6 +1,6 @@
 {
   "name": "statsd-js",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Module for communicating with statsd-proxy from the browser",
   "readmeFilename": "README.md",
   "repository": {
